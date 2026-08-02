@@ -2,16 +2,16 @@
 
 import { useCallback, useEffect, useState } from "react";
 import type { Token } from "@/lib/data";
-import { loadTrackedMarket } from "@/lib/market-client";
+import { loadBroadMarket } from "@/lib/market-client";
 
 export function useMarketData() {
   const [tokens, setTokens] = useState<Token[]>([]);
   const [status, setStatus] = useState<"loading" | "ready" | "error">("loading");
 
-  const refresh = useCallback(async (force = true) => {
+  const refresh = useCallback(async () => {
     setStatus("loading");
     try {
-      const results = await loadTrackedMarket(force);
+      const results = await loadBroadMarket();
       setTokens(results);
       setStatus("ready");
       return results;
@@ -22,6 +22,6 @@ export function useMarketData() {
     }
   }, []);
 
-  useEffect(() => { void refresh(false); }, [refresh]);
+  useEffect(() => { void refresh(); }, [refresh]);
   return { tokens, status, refresh };
 }

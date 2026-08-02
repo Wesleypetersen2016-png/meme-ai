@@ -1,16 +1,18 @@
 # NexIQ
 
-Mobile-first meme token intelligence dashboard built with Next.js 15, TypeScript, and Tailwind CSS.
+NexIQ is a mobile-first crypto decision dashboard built with Next.js 15, TypeScript, and Tailwind CSS.
 
-## Features
+## Core experience
 
-- Dashboard, Scanner, Watchlist, Active Buys, Goals, and Settings routes
-- Goal-aware recommendations and position review signals
-- Live DexScreener refresh plus symbol and token-address lookup
-- Optional Reddit, X, and Discord activity, engagement, and sentiment scoring with transparent source coverage
-- Device-persistent goals, appearance, watchlist, positions, and alert preferences
-- Reusable button and responsive token-table primitives
-- Dark UI, mobile bottom navigation, desktop sidebar, and command-style search
+- **Today:** ranks 40 major non-stablecoin assets as Consider Buy, Wait, or Avoid using live CoinGecko market data and the user's strategy.
+- **My Positions:** calculates live position value and return, then shows Hold, Consider Selling, Take Profit, or Sell when a saved loss rule is triggered.
+- **Profile:** combines strategy, risk limits, alert preferences, identity, and appearance.
+- Token-symbol research uses the broad-market universe; contract-address research uses DexScreener.
+- Optional Reddit, X, and Discord credentials can enrich DEX token research. Missing sources remain unavailable and never receive placeholder values.
+
+## Data honesty
+
+The app does not contain fixture market prices or sample positions. If CoinGecko or DexScreener is unavailable, the relevant screen displays an unavailable state. IQ scores, risk scores, and scenario ranges are explicitly modeled from current inputs and are not guaranteed forecasts.
 
 ## Local setup
 
@@ -22,14 +24,8 @@ pnpm dev
 
 Visit `http://localhost:3000`.
 
-## Social signals
+The keyless CoinGecko public API works for light use. Add `COINGECKO_API_KEY` for a dedicated Demo API allowance. Add the optional X, Reddit, and Discord credentials from `.env.example` to enable social research signals.
 
-Add the optional X, Reddit, and Discord credentials from `.env.example` to activate social scoring. Discord channel IDs are comma-separated, and the bot must be able to read those channels. Sources without credentials are shown as unavailable and do not affect IQ Score.
+## Deployment
 
-## Vercel deployment
-
-Import the repository into Vercel. The default Next.js settings work without changes. DexScreener works without an API key.
-
-Production deployment runs automatically on pushes to `main` through `.github/workflows/vercel-production.yml` after adding `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as GitHub repository secrets.
-
-The interface starts empty and displays market values only after DexScreener returns current data. Unavailable fields remain explicitly unavailable.
+Import the repository into Vercel using the default Next.js settings. Production deployment runs automatically when `main` is pushed.

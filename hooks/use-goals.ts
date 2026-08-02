@@ -21,12 +21,12 @@ export const defaultGoals: GoalProfile = {
   targetReturn: 20,
   maxPosition: 10,
   maxLoss: 8,
-  alertScore: 82,
-  chains: ["ETH", "SOL"],
+  alertScore: 65,
+  chains: ["MARKET", "ETH", "SOL"],
 };
 
 export function useGoals() {
-  const [storedGoals, setGoals] = useLocalStorage<GoalProfile>("momentumiq:goals", defaultGoals);
+  const [storedGoals, setGoals] = useLocalStorage<GoalProfile>("nexiq:goals:v2", defaultGoals);
   const goals = useMemo(() => ({ ...defaultGoals, ...storedGoals }), [storedGoals]);
   const updateGoals = (updates: Partial<GoalProfile>) => setGoals(current => ({ ...defaultGoals, ...current, ...updates }));
   return { goals, updateGoals };

@@ -24,6 +24,13 @@ export async function enrichSocial(tokens: Token[], limit = 8) {
   }));
 }
 
+export async function loadBroadMarket() {
+  const response = await fetch("/api/market", { cache: "no-store" });
+  const payload = await response.json() as { tokens?: Token[]; error?: string };
+  if (!response.ok) throw new Error(payload.error || "Broad market feed unavailable");
+  return payload.tokens ?? [];
+}
+
 async function fetchTrackedToken(symbol: string, chain: string, address: string) {
   const [pairs, social] = await Promise.all([searchDex(address), searchSocial(symbol).catch(() => null)]);
   const candidates = searchResultsToTokens(pairs)

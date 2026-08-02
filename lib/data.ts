@@ -6,6 +6,14 @@ export type Token = {
   socialScore?: number;
   socialMentions?: number;
   socialSources?: number;
+  image?: string;
+  rank?: number;
+  change1h?: number;
+  change7d?: number;
+  volume24h?: string;
+  high24h?: string;
+  low24h?: string;
+  lastUpdated?: string;
   name: string;
   symbol: string;
   color: string;
