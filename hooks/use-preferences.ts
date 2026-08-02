@@ -14,21 +14,21 @@ export type AppPreferences = {
 
 export const defaultPreferences: AppPreferences = {
   displayName: "Investor",
-  accent: "lime",
+  accent: "blue",
   surface: "carbon",
   compactMode: false,
 };
 
 export const accentColors: Record<AccentColor, string> = {
-  lime: "#c8ff3d",
-  blue: "#62a8ff",
-  violet: "#a78bfa",
-  rose: "#fb7185",
-  gold: "#f5c451",
+  lime: "#a8b59b",
+  blue: "#91a7ff",
+  violet: "#b4a2d8",
+  rose: "#d39ba5",
+  gold: "#c7ad7b",
 };
 
 export function usePreferences() {
-  const [preferences, setPreferences] = useLocalStorage<AppPreferences>("momentumiq:preferences", defaultPreferences);
+  const [preferences, setPreferences] = useLocalStorage<AppPreferences>("nexiq:preferences:v2", defaultPreferences);
   const updatePreferences = (updates: Partial<AppPreferences>) => setPreferences(current => ({ ...defaultPreferences, ...current, ...updates }));
   return { preferences: { ...defaultPreferences, ...preferences }, updatePreferences };
 }

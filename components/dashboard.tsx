@@ -23,8 +23,8 @@ export function Dashboard({ query = "" }: { query?: string }) {
   ];
   return <div className="space-y-6">
     <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-      <div><div className="eyebrow acid">{query ? "Market research" : `Your market brief · ${preferences.displayName}`}</div><h1 className="mt-3 text-3xl font-semibold tracking-[-.04em] md:text-4xl">{query ? `Results for “${query}”` : "Buy, wait, or sell."}</h1><p className="mt-2 max-w-xl text-sm text-[#838a83]">{query ? "Live matches from the broad-market universe, ranked against your strategy." : "NexIQ ranks the broader crypto market against your goals. Open any signal to see the evidence and risk."}</p></div>
-      <Link href={query ? "/" : "/portfolio"} className="flex w-fit items-center gap-2 rounded-xl bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-[#0a0c0b] transition hover:brightness-110">{query ? "Back to today" : "Check my positions"} <span>↗</span></Link>
+      <div><div className="eyebrow">{query ? "Market research" : `Market brief for ${preferences.displayName}`}</div><h1 className="mt-3 text-3xl font-medium tracking-[-.04em] md:text-4xl">{query ? `Results for “${query}”` : "Buy, wait, or sell."}</h1><p className="mt-2 max-w-xl text-sm leading-6 text-[#858b96]">{query ? "Live matches from the broad-market universe, ranked against your strategy." : "NexIQ ranks the broader crypto market against your goals. Open any signal to see the evidence and risk."}</p></div>
+      <Link href={query ? "/" : "/portfolio"} className="flex w-fit items-center rounded-[10px] bg-[var(--accent)] px-4 py-3 text-sm font-medium text-[#0b0d12] transition hover:brightness-105">{query ? "Back to today" : "Review positions"}</Link>
     </div>
 
     <RecommendationPanel data={visibleTokens} loading={market.status === "loading"} />
