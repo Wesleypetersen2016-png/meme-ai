@@ -11,10 +11,19 @@
   --cream: #f1f2f5;
   --font-display: "SF Pro Display", "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  --panel-radius: 16px;
+  --control-radius: 10px;
 }
 
 :root[data-surface="midnight"] { --ink: #090b11; --panel: #111521; --line: #252a37; --cream: #f2f4fa; }
 :root[data-surface="graphite"] { --ink: #111214; --panel: #181a1e; --line: #2b2e34; --cream: #f1f1f2; }
+:root[data-surface="espresso"] { --ink: #100d0c; --panel: #191513; --line: #312a26; --cream: #f3efeb; }
+:root[data-surface="forest"] { --ink: #0a0e0d; --panel: #111816; --line: #25312e; --cream: #eef3f1; }
+:root[data-corners="soft"] { --panel-radius: 22px; --control-radius: 14px; }
+:root[data-corners="rounded"] { --panel-radius: 30px; --control-radius: 999px; }
+:root[data-text-scale="compact"] { font-size: 14px; }
+:root[data-text-scale="large"] { font-size: 18px; }
+:root[data-motion="reduced"] *, :root[data-motion="reduced"] *::before, :root[data-motion="reduced"] *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 
 * { box-sizing: border-box; }
 html { background: var(--ink); color-scheme: dark; }
@@ -32,8 +41,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 ::-webkit-scrollbar-thumb { background: #30352f; border-radius: 20px; }
 
 .mono { font-family: var(--font-mono), monospace; }
-.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 12px 32px rgba(0,0,0,.12); }
-.field { border: 1px solid var(--line); border-radius: 10px; background: #0d0f13; color: var(--cream); outline: none; }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--panel-radius); box-shadow: 0 12px 32px rgba(0,0,0,.12); }
+.field { border: 1px solid var(--line); border-radius: var(--control-radius); background: color-mix(in srgb, var(--ink) 88%, #161922); color: var(--cream); outline: none; }
 .field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .grid-dots {
   background-image: radial-gradient(var(--accent-soft) .75px, transparent .75px);
@@ -41,7 +50,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 }
 .eyebrow { font: 600 11px/1.2 var(--font-display), sans-serif; letter-spacing: .015em; color: var(--muted); }
 .acid { color: var(--acid); }
-.pill { border: 1px solid var(--line); border-radius: 10px; background: #0e1014; }
+.pill { border: 1px solid var(--line); border-radius: var(--control-radius); background: color-mix(in srgb, var(--ink) 88%, #161922); }
 .metric-line { position: relative; }
 .recommendation-row { transition: background .18s ease; }
 .recommendation-row:hover, .recommendation-row:focus-within { background: color-mix(in srgb, var(--accent) 3%, transparent); }

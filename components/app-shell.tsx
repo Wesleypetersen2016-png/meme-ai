@@ -36,6 +36,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     root.style.setProperty("--accent-soft", `${accentColors[preferences.accent]}14`);
     root.dataset.surface = preferences.surface;
     root.dataset.density = preferences.compactMode ? "compact" : "comfortable";
+    root.dataset.corners = preferences.corners;
+    root.dataset.textScale = preferences.textScale;
+    root.dataset.motion = preferences.reduceMotion ? "reduced" : "full";
   }, [preferences]);
 
   const submitSearch = () => {
