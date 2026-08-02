@@ -5,7 +5,7 @@ NexIQ is a mobile-first crypto decision dashboard built with Next.js 15, TypeScr
 ## Core experience
 
 - **Today:** ranks 40 major non-stablecoin assets as Consider Buy, Wait, or Avoid using live CoinGecko market data and the user's strategy.
-- **My Positions:** calculates live position value and return, then shows Hold, Consider Selling, Take Profit, or Sell when a saved loss rule is triggered.
+- **My Positions:** calculates live position value and return, then shows Hold, Consider Selling, Take Profit, or Sell when a saved loss rule is triggered. It also supports read-only public-address balance sync for Fomo wallets.
 - **Profile:** combines strategy, risk limits, alert preferences, identity, and appearance.
 - Token-symbol research uses the broad-market universe; contract-address research uses DexScreener.
 - Optional Reddit, X, and Discord credentials can enrich DEX token research. Missing sources remain unavailable and never receive placeholder values.
@@ -24,7 +24,9 @@ pnpm dev
 
 Visit `http://localhost:3000`.
 
-The keyless CoinGecko public API works for light use. Add `COINGECKO_API_KEY` for a dedicated Demo API allowance. Add the optional X, Reddit, and Discord credentials from `.env.example` to enable social research signals.
+The keyless CoinGecko public API works for light use. Add `COINGECKO_API_KEY` for a dedicated Demo API allowance. Add `GOLDRUSH_API_KEY` to enable Fomo public-address balance sync across Base, BNB Chain, Monad, and Solana. Add the optional X, Reddit, and Discord credentials from `.env.example` to enable social research signals.
+
+Portfolio sync only accepts public addresses. Never collect or store seed phrases, private keys, passwords, or transaction permissions.
 
 ## Deployment
 

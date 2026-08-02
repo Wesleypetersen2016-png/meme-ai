@@ -58,7 +58,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <nav className="mt-12 space-y-1">
           {nav.map((item) => {
             const active = pathname === item.href;
-            return <Link key={item.href} href={item.href} className={`flex items-center rounded-[10px] px-3 py-3 text-sm transition ${active ? "bg-[#171a20] text-white" : "text-[#858b96] hover:bg-[#13161b] hover:text-white"}`}>{item.label}{active && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />}</Link>;
+            return <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={`flex items-center rounded-[10px] px-3 py-3 text-sm transition ${active ? "bg-[#171a20] text-white" : "text-[#858b96] hover:bg-[#13161b] hover:text-white"}`}>{item.label}{active && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />}</Link>;
           })}
         </nav>
       </aside>
@@ -78,7 +78,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
       </div>
 
       <nav className="fixed bottom-0 left-0 right-0 z-50 flex border-t border-[var(--line)] bg-[#0b0d10]/96 px-3 pb-[max(10px,env(safe-area-inset-bottom))] pt-3 backdrop-blur-xl md:hidden">
-        {nav.map((item) => { const active = pathname === item.href; return <Link key={item.href} href={item.href} className={`relative flex flex-1 items-center justify-center py-2 text-xs ${active ? "text-white" : "text-[#747b86]"}`}>{active && <span className="absolute top-0 h-0.5 w-5 rounded-full bg-[var(--accent)]" />}{item.shortLabel ?? item.label}</Link>; })}
+        {nav.map((item) => { const active = pathname === item.href; return <Link key={item.href} href={item.href} aria-current={active ? "page" : undefined} className={`relative flex flex-1 items-center justify-center py-2 text-xs ${active ? "text-white" : "text-[#747b86]"}`}>{active && <span className="absolute top-0 h-0.5 w-5 rounded-full bg-[var(--accent)]" />}{item.shortLabel ?? item.label}</Link>; })}
       </nav>
     </div>
   );

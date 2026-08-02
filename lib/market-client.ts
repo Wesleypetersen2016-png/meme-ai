@@ -24,11 +24,13 @@ export async function enrichSocial(tokens: Token[], limit = 8) {
   }));
 }
 
-export async function loadBroadMarket() {
+export type MarketFeed = { tokens: Token[]; provider: string; updatedAt: string };
+
+export async function loadBroadMarket(): Promise<MarketFeed> {
   const response = await fetch("/api/market", { cache: "no-store" });
-  const payload = await response.json() as { tokens?: Token[]; error?: string };
+  const payload = await response.json() as { tokens?: Token[]; provider?: string; updatedAt?: string; error?: string };
   if (!response.ok) throw new Error(payload.error || "Broad market feed unavailable");
-  return payload.tokens ?? [];
+  return { tokens: payload.tokens ?? [], provider: payload.provider ?? "Live market", updatedAt: payload.updatedAt ?? new Date().toISOString() };
 }
 
 async function fetchTrackedToken(symbol: string, chain: string, address: string) {
