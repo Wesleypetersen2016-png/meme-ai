@@ -5,7 +5,9 @@ import { fileURLToPath } from "node:url";
 const baseDirectory = dirname(fileURLToPath(import.meta.url));
 const compat = new FlatCompat({ baseDirectory });
 
-export default [
+const config = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-  { ignores: [".next/**", "node_modules/**", "build/**", "worker/**", "vite.config.ts", "drizzle.config.ts"] },
+  { ignores: [".next/**", "node_modules/**", "build/**", "worker/**", "vite.config.ts", "drizzle.config.ts", "next-env.d.ts"] },
 ];
+
+export default config;

@@ -1,15 +1,15 @@
-# Meme AI
+# NexIQ
 
 Mobile-first meme token intelligence dashboard built with Next.js 15, TypeScript, and Tailwind CSS.
 
 ## Features
 
-- Dashboard, Scanner, Watchlist, Portfolio, and Settings routes
-- Responsive token intelligence table and market visualizations
-- Weighted conviction scoring engine in `lib/scoring.ts` with liquidity, holder growth, volume acceleration, smart wallet buys, social momentum, and inverse rug-risk inputs
-- Server API adapters for DexScreener, Birdeye, GMGN, Solana wallet tracking, push subscriptions, and scoring
-- Device-persistent watchlist and portfolio hooks plus service-worker push notification hooks
-- shadcn/ui configuration and reusable Button, Card, and Badge primitives
+- Dashboard, Scanner, Watchlist, Active Buys, Goals, and Settings routes
+- Goal-aware recommendations and position review signals
+- Live DexScreener refresh plus symbol and token-address lookup
+- Optional Reddit, X, and Discord activity, engagement, and sentiment scoring with transparent source coverage
+- Device-persistent goals, appearance, watchlist, positions, and alert preferences
+- Reusable button and responsive token-table primitives
 - Dark UI, mobile bottom navigation, desktop sidebar, and command-style search
 
 ## Local setup
@@ -22,10 +22,14 @@ pnpm dev
 
 Visit `http://localhost:3000`.
 
+## Social signals
+
+Add the optional X, Reddit, and Discord credentials from `.env.example` to activate social scoring. Discord channel IDs are comma-separated, and the bot must be able to read those channels. Sources without credentials are shown as unavailable and do not affect IQ Score.
+
 ## Vercel deployment
 
-Import the repository into Vercel. The default Next.js settings work without changes. Configure the keys from `.env.example` in project environment variables. DexScreener works without a key.
+Import the repository into Vercel. The default Next.js settings work without changes. DexScreener works without an API key.
 
 Production deployment runs automatically on pushes to `main` through `.github/workflows/vercel-production.yml` after adding `VERCEL_TOKEN`, `VERCEL_ORG_ID`, and `VERCEL_PROJECT_ID` as GitHub repository secrets.
 
-The dashboard currently uses realistic fixture data; wire the API responses into the table when production data contracts are finalized.
+The interface starts empty and displays market values only after DexScreener returns current data. Unavailable fields remain explicitly unavailable.

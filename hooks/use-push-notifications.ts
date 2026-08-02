@@ -9,5 +9,11 @@ export function usePushNotifications() {
     if (result === "granted") await navigator.serviceWorker.register("/sw.js");
     return result;
   }, []);
-  return { permission, enable, supported: typeof window !== "undefined" && "Notification" in window && "serviceWorker" in navigator };
+  const notify = useCallback(async (title: string, body: string, url = "/scanner") => {
+    if (!("serviceWorker" in navigator) || Notification.permission !== "granted") return false;
+    const registration = await navigator.serviceWorker.ready;
+    await registration.showNotification(title, { body, icon: "/favicon.svg", badge: "/favicon.svg", data: url, tag: "momentumiq-signal" });
+    return true;
+  }, []);
+  return { permission, enable, notify, supported: typeof window !== "undefined" && "Notification" in window && "serviceWorker" in navigator };
 }

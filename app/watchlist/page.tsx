@@ -1,3 +1,10 @@
+"use client";
+
 import { PageHeading } from "@/components/page-heading";
 import { TokenTable } from "@/components/token-table";
-export default function WatchlistPage(){return <div className="space-y-6"><PageHeading eyebrow="Custom radar" title="Watchlist" description="Keep the tokens you care about in one focused view with device-persistent score and risk changes." action={<button className="pill px-4 py-3 text-sm">＋ New list</button>} /><div className="flex gap-2 overflow-x-auto mobile-scroll">{["My signals","Fresh launches","Smart wallets"].map((x,i)=><button key={x} className={`pill shrink-0 px-4 py-2.5 text-xs ${i===0?"bg-[#d8ff3e] text-black":"text-[#8b928b]"}`}>{x}</button>)}</div><TokenTable watchlistOnly /></div>}
+import { useMarketData } from "@/hooks/use-market-data";
+
+export default function WatchlistPage() {
+  const market = useMarketData();
+  return <div className="space-y-6"><PageHeading eyebrow="Focused radar" title="Watchlist" description="Only the tokens you have starred, using current market data." /><TokenTable data={market.tokens} watchlistOnly description="Live data for starred tokens" emptyMessage={market.status === "loading" ? "Loading current watchlist data…" : market.status === "error" ? "Live market data is unavailable." : "No live data is available for your starred tokens."} /></div>;
+}
